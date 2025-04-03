@@ -20,7 +20,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.4.*'
-          modules: 'qtcharts'
+          #modules: 'qtcharts'
           cache: true
 
       - name: Setup vcpkg
