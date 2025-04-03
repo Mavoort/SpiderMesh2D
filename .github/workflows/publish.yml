@@ -1,0 +1,44 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
+name: CI
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install latest CMake and Ninja
+        uses: lukka/get-cmake@latest
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.4.*'
+          modules: 'qtcharts'
+          cache: true
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        id: runvcpkg
+        with:
+          vcpkgDirectory: '${{ runner.workspace }}/b/vcpkg'
+          vcpkgGitCommitId: 'a42af01b72c28a8e1d7b48107b33e4f286a55ef6'
+          vcpkgJsonGlob: '**/vcpkg.json'
+
+      - name: Prints output of run-vcpkg's action
+        run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_DEFAULT_TRIPLET_OUT }}'"
+
+      - name: Run CMake consuming CMakePreset.json and run vcpkg to build packages
+        uses: lukka/run-cmake@v10
+        with:
+          #cmakeListsTxtPath: '${{ github.workspace }}/../CMakeLists.txt'
+          configurePreset: 'ninja-multi'
+          buildPreset: 'release'
+          testPreset: 'test-all'
+

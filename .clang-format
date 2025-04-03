@@ -1,0 +1,14 @@
+{
+  BasedOnStyle: WebKit,
+  ColumnLimit: 120,
+  AlignAfterOpenBracket: AlwaysBreak,
+    #AllowAllArgumentsOnNextLine: false,
+    #BinPackParameters: false,
+    #BinPackArguments: false,
+  TabWidth: 4,
+  AccessModifierOffset: -2,
+  UseTab: ForIndentation,
+  NamespaceIndentation: All,
+  SpaceBeforeCpp11BracedList: false,
+  PointerAlignment: Left,
+}

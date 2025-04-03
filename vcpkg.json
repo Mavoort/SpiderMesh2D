@@ -1,0 +1,3 @@
+{
+    "dependencies": ["armadillo", "catch2"]
+}

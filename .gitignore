@@ -1,0 +1,56 @@
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# (generated) Build files
+/build/
+/doc/
+/CMakeFiles/
+CMakeCache.txt
+CMakeLists.txt.user
+CMakeUserPresets.json
+vcpkg-configuration.json
+vcpkg_installed
+
+# Exclude IDE config files (VS Code, KDevelop)
+.vscode
+*.kdev4
+
+#---
+
+# Exclude Quarto files
+*qmd
+*_files
+
+# Exclude sensitive data
+private/

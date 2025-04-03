@@ -1,0 +1,50 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "ninja-multi",
+            "displayName": "Ninja Multi-Config",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug;Release",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "release",
+            "displayName": "Release Build",
+            "configurePreset": "ninja-multi",
+            "configuration": "Release"
+        },
+        {
+            "name": "debug",
+            "displayName": "Debug Build",
+            "configurePreset": "ninja-multi",
+            "configuration": "Debug"
+        },
+        {
+            "name": "documentation",
+            "description": "Build documentation with Doxygen",
+            "displayName": "Run Doxygen",
+            "inherits": ["release"],
+            "targets": "docs"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test-all",
+            "displayName": "Test Everything",
+            "configurePreset": "ninja-multi"
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "packages",
+            "displayName": "CPACK packages",
+            "configurePreset": "ninja-multi"
+        }
+    ]
+}
